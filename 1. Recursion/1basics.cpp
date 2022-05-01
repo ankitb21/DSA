@@ -20,6 +20,7 @@ void printArray(int arr[], int n)
     cout << "]\n";
 }
 
+// 1.
 void printDecreasing(int n)
 {
     if (n <= 0)
@@ -29,6 +30,7 @@ void printDecreasing(int n)
     printDecreasing(n - 1);
 }
 
+// 2.
 void printIncreasing(int n)
 {
     if (n <= 0)
@@ -38,6 +40,47 @@ void printIncreasing(int n)
     cout << n << " ";
 }
 
+// 3.
+int factorial(int n)
+{
+    // Base cases
+
+    // Factorial not available
+    if (n < 0)
+        return -1;
+
+    // n == 0 and n == 1
+    if (n <= 1)
+        return 1;
+
+    // Recursive case
+    return n * factorial(n - 1);
+}
+
+// 4. Time - O(n)
+int powerLinear(int x, int n)
+{
+    if (n == 0)
+        return 1;
+    return x * powerLinear(x, n - 1);
+}
+
+// 5. Time - O(logn)
+int powerLogarithmic(int x, int n)
+{
+
+    if (n == 0)
+        return 1;
+
+    // Recursive case
+    int powerHalf = powerLogarithmic(x, n / 2);
+
+    if (n & 1)
+        return powerHalf * powerHalf * x;
+    return powerHalf * powerHalf;
+}
+
+// 6.
 void reverseArray(int arr[], int n)
 {
     // Base case
@@ -49,6 +92,7 @@ void reverseArray(int arr[], int n)
     reverseArray(arr + 1, n - 2);
 }
 
+// 7.
 bool isPalindrome(int arr[], int n)
 {
     // Base case
@@ -80,5 +124,7 @@ int main()
     // printIncreasing(4);
     // cout << endl;
 
+    // cout << powerLogarithmic(2, 1) << endl;
+    // cout << powerLogarithmic(2, 5) << endl;
     return 0;
 }
