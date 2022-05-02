@@ -106,6 +106,102 @@ bool isPalindrome(int arr[], int n)
     return isPalindrome(arr + 1, n - 2);
 }
 
+// 8. Tower of Hanoi --> Very Important
+long long toh(int N, int from, int to, int aux)
+{
+    // Base case
+
+    // No disk to move as there is no disk
+    if (N == 0)
+        return 0;
+
+    // Recursive case
+
+    // print the instructions to move n - 1 disks from "from" to "aux" using "to"
+    long long steps1 = toh(N - 1, from, aux, to);
+
+    cout << "move disk " << N << " from rod " << from << " to rod " << to << endl;
+
+    // print the instructions to move n - 1 disks from "aux" to "to" using "from"
+    long long steps2 = toh(N - 1, aux, to, from);
+
+    return steps1 + steps2 + 1;
+}
+
+// 9.
+void displayArray(int arr[], int n)
+{
+    if (n == 0)
+    {
+        cout << endl;
+        return;
+    }
+
+    cout << arr[0] << " ";
+    displayArray(arr + 1, n - 1);
+}
+
+// 10.
+void displayArrayReverse(int arr[], int n)
+{
+    if (n == 0)
+    {
+        cout << endl;
+        return;
+    }
+
+    cout << arr[n - 1] << " ";
+    displayArrayReverse(arr, n - 1);
+}
+
+// 11.
+int findMaximum(int arr[], int n)
+{
+    if (n == 0)
+        return INT_MIN;
+
+    int maxElement = findMaximum(arr + 1, n - 1);
+
+    if (maxElement > arr[0])
+        return maxElement;
+
+    return arr[0];
+}
+
+// 12.
+int firstIndexOfOccurence(int arr[], int n, int target)
+{
+    if (n == 0)
+        return -1;
+
+    if (arr[0] == target)
+        return 0;
+
+    int ans = firstIndexOfOccurence(arr + 1, n - 1, target);
+
+    if (ans == -1)
+        return -1;
+
+    return ans + 1;
+}
+
+// 13.
+int lastIndexOfOccurence(int arr[], int n, int target)
+{
+    if (n == 0)
+        return -1;
+
+    int ans = lastIndexOfOccurence(arr + 1, n - 1, target);
+
+    if (ans != -1)
+        return ans + 1;
+
+    if (arr[0] == target)
+        return 0;
+
+    return -1;
+}
+
 int main()
 {
     int arr1[] = {10, 20, 30, 40, 50};
@@ -126,5 +222,19 @@ int main()
 
     // cout << powerLogarithmic(2, 1) << endl;
     // cout << powerLogarithmic(2, 5) << endl;
+
+    // displayArray(arr1, n);
+    // displayArrayReverse(arr1, n);
+
+    // cout << findMaximum(arr1, n) << endl;
+    // cout << findMaximum(arr2, n) << endl;
+
+    // cout << firstIndexOfOccurence(arr1, n, 30) << endl;
+    // cout << firstIndexOfOccurence(arr2, n, 20) << endl;
+    // cout << firstIndexOfOccurence(arr1, n, 50) << endl;
+    // cout << firstIndexOfOccurence(arr1, n, 9) << endl;
+
+    // cout << lastIndexOfOccurence(arr1, n, 5) << endl;
+
     return 0;
 }
