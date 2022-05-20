@@ -202,6 +202,26 @@ int lastIndexOfOccurence(int arr[], int n, int target)
     return -1;
 }
 
+// 14.
+auto allIndicesInArray(int arr[], int idx, int n, int target, int frequency)
+{
+    if (idx == n)
+    {
+        return new int[frequency];
+    }
+    if (arr[idx] == target)
+    {
+        int *arr = allIndicesInArray(arr, idx + 1, n, target, frequency + 1);
+        arr[frequency] = idx;
+        return arr;
+    }
+    else
+    {
+        int *arr = allIndicesInArray(arr, idx + 1, n, target, frequency);
+        return arr;
+    }
+}
+
 int main()
 {
     int arr1[] = {10, 20, 30, 40, 50};
